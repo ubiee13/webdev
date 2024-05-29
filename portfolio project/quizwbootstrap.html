@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Quiz</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .question {
+            border-bottom: 1px solid #dee2e6;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+        }
+        .question:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        .question h2 {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .options label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        .btn-submit {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn-submit:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form id="quizForm">
+            <div class="question">
+                <h2>What is the capital of France?</h2>
+                <div class="options">
+                    <label><input type="radio" name="q1" value="Paris"> Paris</label>
+                    <label><input type="radio" name="q1" value="London"> London</label>
+                    <label><input type="radio" name="q1" value="Berlin"> Berlin</label>
+                </div>
+            </div>
+
+            <div class="question">
+                <h2>What is the capital of Japan?</h2>
+                <div class="options">
+                    <label><input type="radio" name="q2" value="Tokyo"> Tokyo</label>
+                    <label><input type="radio" name="q2" value="Beijing"> Beijing</label>
+                    <label><input type="radio" name="q2" value="Seoul"> Seoul</label>
+                </div>
+            </div>
+
+            <div class="question">
+                <h2>What is the largest planet in our solar system?</h2>
+                <div class="options">
+                    <label><input type="radio" name="q3" value="Jupiter"> Jupiter</label>
+                    <label><input type="radio" name="q3" value="Saturn"> Saturn</label>
+                    <label><input type="radio" name="q3" value="Neptune"> Neptune</label>
+                </div>
+            </div>
+
+            <div class="question">
+                <h2>What is the chemical symbol for water?</h2>
+                <div class="options">
+                    <label><input type="radio" name="q4" value="H2O"> H<sub>2</sub>O</label>
+                    <label><input type="radio" name="q4" value="CO2"> CO<sub>2</sub></label>
+                    <label><input type="radio" name="q4" value="O2"> O<sub>2</sub></label>
+                </div>
+            </div>
+
+            <div class="question">
+                <h2>Who wrote the famous play "Romeo and Juliet"?</h2>
+                <div class="options">
+                    <label><input type="radio" name="q5" value="Shakespeare"> William Shakespeare</label>
+                    <label><input type="radio" name="q5" value="Tolkien"> J.R.R. Tolkien</label>
+                    <label><input type="radio" name="q5" value="Austen"> Jane Austen</label>
+                </div>
+            </div>
+
+            <button type="button" class="btn btn-submit" onclick="checkAnswer()">Submit</button>
+        </form>
+
+        <div id="result" class="mt-4"></div>
+    </div>
+
+    <script>
+        function checkAnswer() {
+            const answers = {
+                q1: 'Paris',
+                q2: 'Tokyo',
+                q3: 'Jupiter',
+                q4: 'H2O',
+                q5: 'Shakespeare'
+            };
+            let score = 0;
+            for (let i = 1; i <= 5; i++) {
+                const options = document.getElementsByName('q' + i);
+                let selected;
+                for (const option of options) {
+                    if (option.checked) {
+                        selected = option.value;
+                        break;
+                    }
+                }
+                if (selected === answers['q' + i]) {
+                    score++;
+                }
+            }
+            const result = document.getElementById('result');
+            result.innerHTML = '<h3>Your score is: ' + score + '/5</h3>';
+        }
+    </script>
+</body>
+</html>

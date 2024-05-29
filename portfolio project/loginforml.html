@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOGIN FORM</title>
+    <!-- SweetAlert CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #d4ffe2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .login-container {
+            width: 60%;
+            padding: 20px;
+            background-color: #c7e2c7; /* Light Green */
+            box-shadow: 0px 0px 15px 0px #388e3c;
+            border-radius: 10px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .login-container h2 {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #006400; /* Dark Green */
+        }
+        .form-group {
+            width: 50%;
+            padding: 0 10px;
+            box-sizing: border-box;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #006400; /* Dark Green */
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 20px 0;
+            border: 1px solid #388e3c; /* Dark Green */
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .form-group .gender-options label {
+            display: inline-block;
+            margin-right: 10px;
+            color: #006400; /* Dark Green */
+        }
+        .form-group .gender-options {
+            display: flex;
+            align-items: center;
+        }
+        .form-group .gender-options input {
+            margin-right: 5px;
+        }
+        .form-group .password-toggle {
+            display: flex;
+            align-items: center;
+        }
+        .form-group .password-toggle input[type="password"] {
+            width: calc(100% - 40px);
+        }
+        .form-group .password-toggle button {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            outline: none;
+        }
+        .form-group .password-toggle button span {
+            text-decoration: underline;
+            cursor: pointer;
+            color: #006400; /* Dark Green */
+        }
+        .form-group.full-width {
+            width: 100%;
+            text-align: center;
+        }
+        .form-group.full-width button {
+            background-color: #006400; /* Dark Green */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .form-group.full-width button:hover {
+            background-color: #004000; /* Darker Green */
+        }
+        @media (max-width: 768px) {
+            .form-group {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>SIGN UP</h2>
+        <div class="form-group">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+        </div>
+        <div class="form-group">
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" placeholder="Enter your age" required>
+        </div>
+        <div class="form-group">
+            <label for="course">Course:</label>
+            <select id="course" name="course" required>
+                <option value="" disabled selected>Select your course</option>
+                <option value="BSIT">Bachelor of Science in Information Technology (BSIT)</option>
+                <option value="BSHM">Bachelor of Science in Hotel and Restaurant Management (BSHM)</option>
+                <option value="BSED">Bachelor of Secondary Education (BSED)</option>
+                <option value="BEED">Bachelor of Elementary Education (BEED)</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="gender">Gender:</label>
+            <div class="gender-options">
+                <label><input type="radio" name="gender" value="male" required> Male</label>
+                <label><input type="radio" name="gender" value="female"> Female</label>
+                
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="hobbies">Hobbies:</label>
+            <select id="hobbies" name="hobbies" required>
+                <option value="" disabled selected>Select your hobbies</option>
+                <option value="Sports">Sports</option>
+                <option value="Reading">Reading</option>
+                <option value="Music">Music</option>
+                <option value="Gaming">Gaming</option>
+                <option value="Cooking">Cooking</option>
+            </select>
+        </div>
+        <div class="form-group full-width">
+            <button type="button" onclick="login()">Submit</button>
+        </div>
+    </div>
+
+    <script>
+        function login() {
+            // Check if any field is empty
+            const fields = document.querySelectorAll('input, select');
+            let isEmpty = false;
+            fields.forEach(field => {
+                if (field.value.trim() === '') {
+                    isEmpty = true;
+                }
+            });
+
+            if (isEmpty) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Please fill out all fields!',
+                });
+            } else {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Signed Up!',
+                    text: 'You have successfully signed up!S',
+                });
+            }
+        }
+    </script>
+</body>
+</html>
